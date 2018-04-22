@@ -1,0 +1,133 @@
+Boykos-MacBook-Pro:AWS bvaslocal1$ cd KeyPairs/
+Boykos-MacBook-Pro:KeyPairs bvaslocal1$ ls
+Default_Key_Pair.pem	ITBMV_PROD_Key_Pair.pem	ITBMV_TEST_Key_Piar.pem
+Boykos-MacBook-Pro:KeyPairs bvaslocal1$ chmod 400 Default_Key_Pair.pem
+Boykos-MacBook-Pro:KeyPairs bvaslocal1$ ssh -i "Default_Key_Pair.pem" root@ec2-35-178-73-211.eu-west-2.compute.amazonaws.com
+Please login as the user "centos" rather than the user "root".
+
+centos
+^CConnection to ec2-35-178-73-211.eu-west-2.compute.amazonaws.com closed. 
+Boykos-MacBook-Pro:KeyPairs bvaslocal1$ ssh -i "Default_Key_Pair.pem" centos@ec2-35-178-73-211.eu-west-2.compute.amazonaws.com
+[centos@ip-10-0-1-11 ~]$ pwd
+/home/centos    
+[centos@ip-10-0-1-11 /]$ netstat -an | grep 80
+unix  2      [ ACC ]     STREAM     LISTENING     14980    /var/run/dbus/system_bus_socket
+[centos@ip-10-0-1-11 /]$ sudo yum install -y httpd
+Loaded plugins: fastestmirror
+base                                                                                                                                                                               | 3.6 kB  00:00:00     
+extras                                                                                                                                                                             | 3.4 kB  00:00:00     
+updates                                                                                                                                                                            | 3.4 kB  00:00:00     
+(1/4): base/7/x86_64/group_gz                                                                                                                                                      | 156 kB  00:00:00     
+(2/4): extras/7/x86_64/primary_db                                                                                                                                                  | 185 kB  00:00:00     
+(3/4): base/7/x86_64/primary_db                                                                                                                                                    | 5.7 MB  00:00:00     
+(4/4): updates/7/x86_64/primary_db                                                                                                                                                 | 6.9 MB  00:00:00     
+Determining fastest mirrors
+ * base: mirror.freethought-internet.co.uk
+ * extras: centos.serverspace.co.uk
+ * updates: mirror.mhd.uk.as44574.net
+Resolving Dependencies
+--> Running transaction check
+---> Package httpd.x86_64 0:2.4.6-67.el7.centos.6 will be installed
+--> Processing Dependency: httpd-tools = 2.4.6-67.el7.centos.6 for package: httpd-2.4.6-67.el7.centos.6.x86_64
+--> Processing Dependency: system-logos >= 7.92.1-1 for package: httpd-2.4.6-67.el7.centos.6.x86_64
+--> Processing Dependency: /etc/mime.types for package: httpd-2.4.6-67.el7.centos.6.x86_64
+--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.6-67.el7.centos.6.x86_64
+--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.6-67.el7.centos.6.x86_64
+--> Running transaction check
+---> Package apr.x86_64 0:1.4.8-3.el7_4.1 will be installed
+---> Package apr-util.x86_64 0:1.5.2-6.el7 will be installed
+---> Package centos-logos.noarch 0:70.0.6-3.el7.centos will be installed
+---> Package httpd-tools.x86_64 0:2.4.6-67.el7.centos.6 will be installed
+---> Package mailcap.noarch 0:2.1.41-2.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==========================================================================================================================================================================================================
+ Package                                          Arch                                       Version                                                    Repository                                   Size
+==========================================================================================================================================================================================================
+Installing:
+ httpd                                            x86_64                                     2.4.6-67.el7.centos.6                                      updates                                     2.7 M
+Installing for dependencies:
+ apr                                              x86_64                                     1.4.8-3.el7_4.1                                            updates                                     103 k
+ apr-util                                         x86_64                                     1.5.2-6.el7                                                base                                         92 k
+ centos-logos                                     noarch                                     70.0.6-3.el7.centos                                        base                                         21 M
+ httpd-tools                                      x86_64                                     2.4.6-67.el7.centos.6                                      updates                                      88 k
+ mailcap                                          noarch                                     2.1.41-2.el7                                               base                                         31 k
+
+Transaction Summary
+==========================================================================================================================================================================================================
+Install  1 Package (+5 Dependent packages)
+
+Total download size: 24 M
+Installed size: 32 M
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/updates/packages/apr-1.4.8-3.el7_4.1.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for apr-1.4.8-3.el7_4.1.x86_64.rpm is not installed
+(1/6): apr-1.4.8-3.el7_4.1.x86_64.rpm                                                                                                                                              | 103 kB  00:00:00     
+Public key for apr-util-1.5.2-6.el7.x86_64.rpm is not installed
+(2/6): apr-util-1.5.2-6.el7.x86_64.rpm                                                                                                                                             |  92 kB  00:00:00     
+(3/6): httpd-tools-2.4.6-67.el7.centos.6.x86_64.rpm                                                                                                                                |  88 kB  00:00:00     
+(4/6): mailcap-2.1.41-2.el7.noarch.rpm                                                                                                                                             |  31 kB  00:00:00     
+(5/6): httpd-2.4.6-67.el7.centos.6.x86_64.rpm                                                                                                                                      | 2.7 MB  00:00:00     
+(6/6): centos-logos-70.0.6-3.el7.centos.noarch.rpm                                                                                                                                 |  21 MB  00:00:00     
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                      26 MB/s |  24 MB  00:00:00     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-4.1708.el7.centos.x86_64 (installed)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : apr-1.4.8-3.el7_4.1.x86_64                                                                                                                                                             1/6 
+  Installing : apr-util-1.5.2-6.el7.x86_64                                                                                                                                                            2/6 
+  Installing : httpd-tools-2.4.6-67.el7.centos.6.x86_64                                                                                                                                               3/6 
+  Installing : centos-logos-70.0.6-3.el7.centos.noarch                                                                                                                                                4/6 
+  Installing : mailcap-2.1.41-2.el7.noarch                                                                                                                                                            5/6 
+  Installing : httpd-2.4.6-67.el7.centos.6.x86_64                                                                                                                                                     6/6 
+  Verifying  : mailcap-2.1.41-2.el7.noarch                                                                                                                                                            1/6 
+  Verifying  : httpd-2.4.6-67.el7.centos.6.x86_64                                                                                                                                                     2/6 
+  Verifying  : apr-util-1.5.2-6.el7.x86_64                                                                                                                                                            3/6 
+  Verifying  : httpd-tools-2.4.6-67.el7.centos.6.x86_64                                                                                                                                               4/6 
+  Verifying  : apr-1.4.8-3.el7_4.1.x86_64                                                                                                                                                             5/6 
+  Verifying  : centos-logos-70.0.6-3.el7.centos.noarch                                                                                                                                                6/6 
+
+Installed:
+  httpd.x86_64 0:2.4.6-67.el7.centos.6                                                                                                                                                                    
+
+Dependency Installed:
+  apr.x86_64 0:1.4.8-3.el7_4.1      apr-util.x86_64 0:1.5.2-6.el7      centos-logos.noarch 0:70.0.6-3.el7.centos      httpd-tools.x86_64 0:2.4.6-67.el7.centos.6      mailcap.noarch 0:2.1.41-2.el7     
+
+Complete! 
+[centos@ip-10-0-1-11 /]$ sudo systemctl is-enabled httpd
+disabled
+[centos@ip-10-0-1-11 /]$ sudo systemctl enable httpd
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+[centos@ip-10-0-1-11 /]$ netstat -an | grep 80
+unix  2      [ ACC ]     STREAM     LISTENING     14980    /var/run/dbus/system_bus_socket
+[centos@ip-10-0-1-11 /]$ sudo systemctl start httpd
+[centos@ip-10-0-1-11 /]$ netstat -an | grep 80
+tcp6       0      0 :::80                   :::*                    LISTEN     
+unix  2      [ ACC ]     STREAM     LISTENING     14980    /var/run/dbus/system_bus_socket
+[centos@ip-10-0-1-11 /]$ pwd
+/
+[centos@ip-10-0-1-11 /]$ cd /
+[centos@ip-10-0-1-11 /]$ ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+[centos@ip-10-0-1-11 /]$ cd var/
+[centos@ip-10-0-1-11 var]$ ls
+adm  cache  crash  db  empty  games  gopher  kerberos  lib  local  lock  log  mail  nis  opt  preserve  run  spool  tmp  www  yp
+[centos@ip-10-0-1-11 var]$ cd www
+[centos@ip-10-0-1-11 www]$ ls
+cgi-bin  html
+[centos@ip-10-0-1-11 www]$ cd html/
+[centos@ip-10-0-1-11 html]$ ls
+[centos@ip-10-0-1-11 html]$ sudo vi index.html 
+[centos@ip-10-0-1-11 html]$ exit
+logout
+Connection to ec2-35-178-73-211.eu-west-2.compute.amazonaws.com closed.
+Boykos-MacBook-Pro:KeyPairs bvaslocal1$ 
