@@ -1,0 +1,5 @@
+Server Naming definition
+<Virtual/Hardware>SRV<number>
+Examples
+VSRV1 - Virtual Server 1
+HSRV1 - Hardware Server 1
